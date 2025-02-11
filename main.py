@@ -1,15 +1,15 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from cv_evaluation import cv_evaluation
-from information_extracter import information_extracter
-from cv_comparer import cv_comparer
-from cv_summary import cv_summary
-from cv_ranker import cv_ranker
-from custom_prompt import custom_prompter
-from ai_quiz import ai_quiz
-from ai_interviewer import ai_interviewer
-from skill_ranker import skill_ranker
-from voice_ai_interview import voice_powered_ai_interviewer
+from app_pages.cv_evaluation import cv_evaluation
+from app_pages.information_extracter import information_extracter
+from app_pages.cv_comparer import cv_comparer
+from app_pages.cv_summary import cv_summary
+from app_pages.cv_ranker import cv_ranker
+from app_pages.custom_prompt import custom_prompter
+from app_pages.ai_quiz import ai_quiz
+from app_pages.ai_interviewer import ai_interviewer
+from app_pages.skill_ranker import skill_ranker
+from app_pages.voice_ai_interview import voice_powered_ai_interviewer
 
 
 def main():
@@ -37,7 +37,7 @@ def main():
     else:
     # Sidebar for Navigation
         with st.sidebar:
-            st.image("image.png", width=280)  # Replace with your logo URL or remove if not needed
+            st.image("assets/image.png", width=280)  # Replace with your logo URL or remove if not needed
             st.title("CV Toolkit")
             selected = option_menu(
                 menu_title=None,  # Hide the menu title
