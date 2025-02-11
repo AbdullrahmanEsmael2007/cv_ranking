@@ -53,41 +53,34 @@ def custom_prompter():
 
     # --- 1. UPLOAD/PASTE CVs ---
     st.subheader("Upload or Enter CVs")
-    upload_mode = st.radio("Choose how to provide CVs:", ("Upload Files", "Enter Text"))
 
     cv_texts = []
-    if upload_mode == "Upload Files":
-        uploaded_files = st.file_uploader(
-            "Upload one or more CV files (PDF, DOCX, TXT)",
-            type=["pdf", "docx", "txt"],
-            accept_multiple_files=True
-        )
-        if uploaded_files:
-            for file in uploaded_files:
-                try:
-                    if file.type == "application/pdf":
-                        text = extract_text_from_pdf(file)
-                    elif file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                        text = extract_text_from_docx(file)
-                    elif file.type == "text/plain":
-                        text = extract_text_from_txt(file)
-                    else:
-                        st.warning(f"Unsupported file type: {file.type}")
-                        continue
+    
+    uploaded_files = st.file_uploader(
+        "Upload one or more CV files (PDF, DOCX, TXT)",
+        type=["pdf", "docx", "txt"],
+        accept_multiple_files=True
+    )
+    
+    if uploaded_files:
+        for file in uploaded_files:
+            try:
+                if file.type == "application/pdf":
+                    text = extract_text_from_pdf(file)
+                elif file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+                    text = extract_text_from_docx(file)
+                elif file.type == "text/plain":
+                    text = extract_text_from_txt(file)
+                else:
+                    st.warning(f"Unsupported file type: {file.type}")
+                    continue
 
-                    if text.strip():
-                        cv_texts.append({"filename": file.name, "text": text})
-                    else:
-                        st.warning(f"No text found in {file.name}")
-                except Exception as e:
-                    st.error(f"Error processing {file.name}: {e}")
-    else:
-        cv_input = st.text_area("Paste CV Texts Here (separate multiple CVs with a delimiter, e.g., '---')", height=200)
-        if cv_input.strip():
-            # Assume CVs are separated by '---' or similar
-            separated_texts = re.split(r'\n-{3,}\n', cv_input.strip())
-            for idx, text in enumerate(separated_texts, start=1):
-                cv_texts.append({"filename": f"CV_{idx}.txt", "text": text})
+                if text.strip():
+                    cv_texts.append({"filename": file.name, "text": text})
+                else:
+                    st.warning(f"No text found in {file.name}")
+            except Exception as e:
+                st.error(f"Error processing {file.name}: {e}")
 
     if not cv_texts:
         st.info("Please upload CVs or enter text to proceed.")

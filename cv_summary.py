@@ -10,19 +10,16 @@ def cv_summary():
     st.write("Upload a CV or paste its text to get a concise summary with key information.")
 
     # --- 1. Upload/Paste CV ---
-    toggle_method = st.toggle("File or Text", key="cv_toggle")
     cv_text = ""
-    if toggle_method:
-        cv_text = st.text_area("Enter CV text here", height=150)
-    else:
-        cv_file = st.file_uploader("Upload CV (PDF, DOCX, or TXT)", type=["pdf", "docx", "txt"])
-        if cv_file is not None:
-            if cv_file.type == "application/pdf":
-                cv_text = extract_text_from_pdf(cv_file)
-            elif cv_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                cv_text = extract_text_from_docx(cv_file)
-            elif cv_file.type == "text/plain":
-                cv_text = extract_text_from_txt(cv_file)
+
+    cv_file = st.file_uploader("Upload CV (PDF, DOCX, or TXT)", type=["pdf", "docx", "txt"])
+    if cv_file is not None:
+        if cv_file.type == "application/pdf":
+            cv_text = extract_text_from_pdf(cv_file)
+        elif cv_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            cv_text = extract_text_from_docx(cv_file)
+        elif cv_file.type == "text/plain":
+            cv_text = extract_text_from_txt(cv_file)
 
     # --- 2. Advanced LLM Settings ---
     with st.expander("Advanced LLM Settings"):

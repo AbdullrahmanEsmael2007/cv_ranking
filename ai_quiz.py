@@ -15,17 +15,12 @@ def ai_quiz():
     job_description = get_job_description()
 
 
-    # Toggleable CV input (file upload or text input)
-    cv_option = st.radio("Choose CV input method:", ("File Upload", "Text Input"))
 
-    if cv_option == "File Upload":
-        cv_file = st.file_uploader("Upload your CV (PDF or TXT):", type=["pdf", "txt"])
-        if cv_file:
-            cv_text = cv_file.read().decode("utf-8") if cv_file.type == "text/plain" else "PDF content extraction not implemented."
-        else:
-            cv_text = ""
+    cv_file = st.file_uploader("Upload your CV (PDF or TXT):", type=["pdf", "txt"])
+    if cv_file:
+        cv_text = cv_file.read().decode("utf-8") if cv_file.type == "text/plain" else "PDF content extraction not implemented."
     else:
-        cv_text = st.text_area("Paste your CV here:")
+        cv_text = ""
 
     amount = st.slider("Number of Questions", 3, 10, 5)
     level = st.select_slider(

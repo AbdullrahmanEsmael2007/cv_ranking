@@ -1,7 +1,10 @@
 import openai
-from key import OPENAI_API_KEY
 from openai import OpenAI 
-client = OpenAI(api_key=OPENAI_API_KEY)
+import streamlit as st
+
+if "key" not in st.session_state:
+    st.session_state.key = None
+client = OpenAI(api_key=st.session_state.key)
 
 def request(prompt, temperature=0.7, max_tokens=1000):
     # Allow passing either a string (single prompt) or a list of messages (conversation history)

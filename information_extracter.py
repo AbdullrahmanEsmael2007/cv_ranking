@@ -12,35 +12,19 @@ def information_extracter():
     st.title("Data Extracter")
     st.write("Submit a CV and select what sections you would like to extract.")
 
-    # Toggle between direct text input or file upload
-    toggled = st.toggle("File or Text")
 
-    # Make the toggle switch always grey
-    toggle_css = """
-    <style>
-    label[data-baseweb="checkbox"] > div:first-child {
-        background: #A9A9A9 !important;
-    }
-    label[data-baseweb="checkbox"] input:checked + div:first-child > div {
-        transform: translateX(24px);
-    }
-    </style>
-    """
-    st.markdown(toggle_css, unsafe_allow_html=True)
 
     # If toggled is True, user can paste text. Otherwise, they can upload a file.
-    if toggled:
-        cv_text = st.text_area("Enter CV (text)", height=120)
-    else:
-        cv_file = st.file_uploader("Upload CV", type=["pdf", "docx", "txt"])
-        cv_text = ""
-        if cv_file is not None:
-            if cv_file.type == "application/pdf":
-                cv_text = extract_text_from_pdf(cv_file)
-            elif cv_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
-                cv_text = extract_text_from_docx(cv_file)
-            elif cv_file.type == "text/plain":
-                cv_text = extract_text_from_txt(cv_file)
+
+    cv_file = st.file_uploader("Upload CV", type=["pdf", "docx", "txt"])
+    cv_text = ""
+    if cv_file is not None:
+        if cv_file.type == "application/pdf":
+            cv_text = extract_text_from_pdf(cv_file)
+        elif cv_file.type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            cv_text = extract_text_from_docx(cv_file)
+        elif cv_file.type == "text/plain":
+            cv_text = extract_text_from_txt(cv_file)
 
     # Allow multiple selections of information
     information_options = st.multiselect(
