@@ -1,4 +1,5 @@
-from app_pages import OpenAI, st
+import streamlit as st
+from openai import OpenAI
 
 if "key" not in st.session_state:
     st.session_state.key = None
