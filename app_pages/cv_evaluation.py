@@ -1,6 +1,5 @@
-from app_pages import st,request,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt
-
-
+from app_pages import st,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt
+from app_pages.chatgpt_request import request
 def cv_evaluation():
     st.title("CV Evaluation")
     st.write("Enter a CV with the job description")
@@ -51,8 +50,10 @@ def cv_evaluation():
             shouldBeHired = request(f"Should the CV be hired?  Evaluation: {evaluation}- Give the answer only (true or false) without any text.")
         with st.expander("Evaluation",expanded=True):
             st.write(evaluation)
-            
-            st.slider("Score",min_value=0,max_value=100,value=int(score),disabled=True)
+            if isinstance(score,int):
+                st.slider("Score",min_value=0,max_value=100,value=int(score),disabled=True)
+            else:
+                st.write(score)
             print(shouldBeHired)
             if shouldBeHired.lower() == "true":
                 st.success("The CV should be hired!")

@@ -1,9 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 
-if "key" not in st.session_state:
-    st.session_state.key = None
-else:
+if "key"  in st.session_state:
     client = OpenAI(api_key=st.session_state.key)
 
 def request(prompt, temperature=0.7, max_tokens=1000):
@@ -27,3 +25,5 @@ def request(prompt, temperature=0.7, max_tokens=1000):
         return response.choices[0].message.content.strip()
     except Exception as e:
         return None
+
+print(request("hello"))
