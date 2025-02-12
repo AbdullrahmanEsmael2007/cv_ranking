@@ -72,7 +72,8 @@ def main():
             st.markdown("---")
             setting = st.button("Settings")
             if setting:
-                settings()
+                st.subheader("Settings")
+                st.write(f"API Key: **{st.session_state.key}**")
             st.markdown("---")
             st.write("Developed by [RMG](https://www.rmg-sa.com/en/)")  # Replace with your details
 
