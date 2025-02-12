@@ -1,4 +1,4 @@
-from app_pages import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
+from app_pages.extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 
 def convert(file):
     if file is not None:
