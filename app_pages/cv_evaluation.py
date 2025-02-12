@@ -1,8 +1,5 @@
 import streamlit as st
 
-
-
-from app_pages import chatgpt_request
 from app_pages.chatgpt_request import request
 from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 
