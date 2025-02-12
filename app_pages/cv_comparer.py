@@ -1,4 +1,4 @@
-from app_pages import st, request, extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt
+from app_pages import st, request, extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt,bottom,re
 
 def cv_comparer():
     st.title("CV Comparer")
