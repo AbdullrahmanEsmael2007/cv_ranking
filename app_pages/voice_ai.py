@@ -2,7 +2,6 @@ import sounddevice as sd
 import wave
 from pathlib import Path
 from app_pages import st, OpenAI
-from temp_cv_jd.create_cv import OPENAI_API_KEY
 
 if "key"  in st.session_state:
     OPENAI_API_KEY = st.session_state.key
