@@ -1,5 +1,5 @@
-from voice_ai import *
-from ai_interviewer import *
+from app_pages.voice_ai import *
+from app_pages.ai_interviewer import *
 from app_pages import st,request
 
 
