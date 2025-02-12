@@ -28,7 +28,7 @@ An AI-powered interviewer that asks questions based on a job description and eva
 
 ```bash
 # Clone repository
-git clone <repository-url>
+git clone https://github.com/AbdullrahmanEsmael2007/cv_ranking.git
 
 # Install dependencies
 pip install -r requirements.txt
