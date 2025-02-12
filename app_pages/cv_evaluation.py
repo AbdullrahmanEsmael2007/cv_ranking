@@ -1,6 +1,5 @@
 import streamlit as st
 
-from PyPDF2 import PdfReader
 from chatgpt_request import request
 from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 

@@ -1,15 +1,9 @@
-import openai
-import pyttsx3
 import sounddevice as sd
 import numpy as np
 import wave
-import io
 from openai import OpenAI
 from pathlib import Path
-import os
-from playsound import playsound
 import streamlit as st
-import tempfile
 
 # Set up your OpenAI API key
 client = OpenAI(api_key=st.session_state.key)

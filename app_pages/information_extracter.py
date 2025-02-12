@@ -2,9 +2,6 @@ import streamlit as st
 from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 from chatgpt_request import request
 from streamlit_extras.bottom_container import bottom
-import time
-from streamlit_extras.echo_expander import echo_expander
-from streamlit_extras.let_it_rain import rain
 import re
 import base64
 

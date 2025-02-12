@@ -1,7 +1,5 @@
 import streamlit as st
 import base64
-import re
-import json
 
 from chatgpt_request import request  # Your existing request function
 

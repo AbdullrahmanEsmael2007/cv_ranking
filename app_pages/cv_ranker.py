@@ -1,12 +1,10 @@
 import streamlit as st
 from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 from chatgpt_request import request  # Your function that calls the LLM (e.g. ChatGPT)
-import base64
 import json
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
-import re
+
 
 def cv_ranker():
     st.title("CV Ranker")
