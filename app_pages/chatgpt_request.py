@@ -7,6 +7,7 @@ else:
     client = OpenAI(api_key=st.session_state.key)
 
 def request(prompt, temperature=0.7, max_tokens=1000):
+    print("Entered with prompt",prompt)
     # Allow passing either a string (single prompt) or a list of messages (conversation history)
     if isinstance(prompt, str):
         messages = [
