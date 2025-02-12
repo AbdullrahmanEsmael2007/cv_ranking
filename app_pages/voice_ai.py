@@ -4,8 +4,8 @@ from pathlib import Path
 from app_pages import st, OpenAI
 
 if "key"  in st.session_state:
-    OPENAI_API_KEY = st.session_state.key
-    client = OpenAI(api_key=OPENAI_API_KEY)
+    api_key = st.session_state.key
+    client = OpenAI(api_key=api_key)
 
 
 
