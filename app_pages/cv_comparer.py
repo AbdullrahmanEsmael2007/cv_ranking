@@ -1,5 +1,5 @@
-from app_pages import st, request, extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt,bottom,re
-
+from app_pages import st, extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt,bottom,re
+from app_pages.chatgpt_request import request
 def cv_comparer():
     st.title("CV Comparer")
     st.write("Upload any number of CVs, and I'll compare them collectively. Names are auto-extracted where possible.")
@@ -56,8 +56,6 @@ def cv_comparer():
         prompt = build_prompt(cv_entries, suggest_improvements)
 
         with st.spinner("Comparing CVs..."):
-            # Make your ChatGPT request. 
-            # Adjust to how your 'request' function is designed (e.g., request(prompt, temperature=..., max_tokens=...))
             comparison_result = request(
                 prompt,
                 temperature=temperature,
@@ -77,9 +75,6 @@ def cv_comparer():
         else:
             st.write(final_text)
 
-        # 8. Confetti for fun
-
-        # 9. Download results
 
 
 def extract_name_from_cv(cv_text):
