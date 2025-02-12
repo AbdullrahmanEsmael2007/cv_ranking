@@ -15,7 +15,7 @@ from app_pages.voice_ai_interview import voice_powered_ai_interviewer
 def main():
     # Set up the Streamlit page configuration
     st.set_page_config(
-        page_title="تطبيق معالجة السيرة الذاتية",
+        page_title="CV Processing App",
         layout="wide",
         initial_sidebar_state="expanded"
     )
@@ -24,34 +24,34 @@ def main():
         st.session_state.key = None
     
     if st.session_state.key is None:
-        st.title("مفتاح API")
-        st.write("مفتاح API مطلوب لاستخدام هذا التطبيق. يرجى إدخال مفتاح API الخاص بك أدناه:")
-        st.write("ليس لديك مفتاح API؟ اضغط [هنا](https://platform.openai.com/account/api-keys) للحصول عليه.")
-        key = st.text_input("أدخل مفتاح OpenAI API الخاص بك", value=st.session_state.key if "key" in st.session_state else "")
-        if key is not None and st.button("حفظ المفتاح"):
+        st.title("API key")
+        st.write("API key is required to use this app. Please enter your API key below:")
+        st.write("Don't have an API key? Click [here](https://platform.openai.com/account/api-keys) to get one.")
+        key = st.text_input("Enter your OpenAI API key", value=st.session_state.key if "key" in st.session_state else "")
+        if key is not None and st.button("Save Key"):
             st.session_state.key = key
-            st.write(f"مفتاح API الخاص بك: **{key}**")
-            st.button("تأكيد")
+            st.write(f"Your API-Key: **{key}**")
+            st.button("Confirm")
         
 
     else:
     # Sidebar for Navigation
         with st.sidebar:
             st.image("assets/image.png", width=280)  # Replace with your logo URL or remove if not needed
-            st.title("أدوات السيرة الذاتية")
+            st.title("CV Toolkit")
             selected = option_menu(
                 menu_title=None,  # Hide the menu title
                 options=[
-                    "مستخرج المعلومات",
-                    "مقارنة السيرة الذاتية",
-                    "تقييم السيرة الذاتية",
-                    "ملخص السيرة الذاتية",
-                    "ترتيب السيرة الذاتية",
-                    "موجه مخصص",
-                    "اختبار AI",
-                    "مقابلة AI",
-                    "ترتيب المهارات",
-                    "مقابلة AI بالصوت"
+                    "Information Extracter",
+                    "CV Comparer",
+                    "CV Evaluation",
+                    "CV Summary",
+                    "CV Ranker",
+                    "Custom Prompter",
+                    "AI Quiz",
+                    "AI Interview",
+                    "Skill Ranker",
+                    "Voice Powered AI Interviewer"
                 ],
                 icons=[
                     "clipboard-data",
@@ -70,32 +70,32 @@ def main():
                 orientation="vertical"
             )
             st.markdown("---")
-            setting = st.button("الإعدادات")
+            setting = st.button("Settings")
             if setting:
                 settings()
             st.markdown("---")
-            st.write("تم التطوير بواسطة [RMG](https://www.rmg-sa.com/en/)")  # Replace with your details
+            st.write("Developed by [RMG](https://www.rmg-sa.com/en/)")  # Replace with your details
 
         # Display the selected page's content
-        if selected == "مستخرج المعلومات":
+        if selected == "Information Extracter":
             information_extracter()
-        elif selected == "مقارنة السيرة الذاتية":
+        elif selected == "CV Comparer":
             cv_comparer()
-        elif selected == "تقييم السيرة الذاتية":
+        elif selected == "CV Evaluation":
             cv_evaluation()
-        elif selected == "ملخص السيرة الذاتية":
+        elif selected == "CV Summary":
             cv_summary()
-        elif selected == "ترتيب السيرة الذاتية":
+        elif selected == "CV Ranker":
             cv_ranker()
-        elif selected == "موجه مخصص":
+        elif selected == "Custom Prompter":
             custom_prompter()
-        elif selected == "اختبار AI":
+        elif selected == "AI Quiz":
             ai_quiz()
-        elif selected == "مقابلة AI":
+        elif selected == "AI Interview":
             ai_interviewer()
-        elif selected == "ترتيب المهارات":
+        elif selected == "Skill Ranker":
             skill_ranker()
-        elif selected == "مقابلة AI بالصوت":
+        elif selected == "Voice Powered AI Interviewer":
             voice_powered_ai_interviewer()
 
 
@@ -105,4 +105,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
