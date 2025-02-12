@@ -104,15 +104,5 @@ def information_extracter():
                 st.write(answer)
 
         # Optionally allow user to download the raw answer as a .txt file
-        download_button_str = create_download_button(answer, "extracted_information.txt", "Download Results")
-        st.markdown(download_button_str, unsafe_allow_html=True)
-
-
-def create_download_button(content, filename, button_text):
-    """
-    Create a download button to save `content` into `filename`.
-    """
-    b64 = base64.b64encode(content.encode()).decode()  # Convert to base64
-    return f'<a href="data:file/txt;base64,{b64}" download="{filename}">{button_text}</a>'
 
 

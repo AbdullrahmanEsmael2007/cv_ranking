@@ -76,10 +76,7 @@ def cv_summary():
         st.subheader("CV Summary")
         st.write(final_text, unsafe_allow_html=True)
 
-        # Download button
-        download_link = create_download_button(summary_result, "cv_summary.txt", "Download Summary")
-        st.markdown(download_link, unsafe_allow_html=True)
-
+        # Downlo
 
 def build_summary_prompt(cv_text, contact_info, show_improvement):
     """
@@ -170,10 +167,3 @@ CV TEXT:
             "phone": "Unknown"
         }
 
-
-def create_download_button(content, filename, button_text):
-    """
-    Creates a download button to save `content` into `filename`.
-    """
-    b64 = base64.b64encode(content.encode()).decode()
-    return f'<a href="data:file/txt;base64,{b64}" download="{filename}">{button_text}</a>'

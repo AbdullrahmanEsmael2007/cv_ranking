@@ -80,8 +80,6 @@ def cv_comparer():
         # 8. Confetti for fun
 
         # 9. Download results
-        download_link = create_download_button(comparison_result, "cv_comparison_results.txt", "Download Comparison")
-        st.markdown(download_link, unsafe_allow_html=True)
 
 
 def extract_name_from_cv(cv_text):
@@ -159,11 +157,3 @@ Please do the following:
     final_prompt += cv_section
 
     return final_prompt
-
-
-def create_download_button(content, filename, button_text):
-    """
-    Creates a downloadable link (button) that saves 'content' into 'filename'.
-    """
-    b64 = base64.b64encode(content.encode()).decode()  # Convert to base64
-    return f'<a href="data:file/txt;base64,{b64}" download="{filename}">{button_text}</a>'

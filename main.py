@@ -51,7 +51,7 @@ def main():
                     "AI Quiz",
                     "AI Interview",
                     "Skill Ranker",
-                    "Voice Powered AI Interviewer"
+                    "Voice AI Interview"
                 ],
                 icons=[
                     "clipboard-data",
@@ -95,7 +95,7 @@ def main():
             ai_interviewer()
         elif selected == "Skill Ranker":
             skill_ranker()
-        elif selected == "Voice Powered AI Interviewer":
+        elif selected == "Voice AI Interview":
             voice_powered_ai_interviewer()
 
 

@@ -134,6 +134,3 @@ def skill_ranker():
         df = pd.DataFrame([{**{"Name": r["name"], "Average Score": r["avg_score"]}, **r["scores"]} for r in ranking_data])
         st.write("### Ranked Candidates")
         st.dataframe(df)
-
-if __name__ == "__main__":
-    main()
