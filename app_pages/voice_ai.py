@@ -1,12 +1,11 @@
 import sounddevice as sd
 import wave
 from pathlib import Path
-from app_pages import st, bottom, request, get_job_description, OpenAI
+from app_pages import st, OpenAI
 
-if "key" not in st.session_state:
-    st.session_state.key = None
-else:
+if "key"  in st.session_state:
     client = OpenAI(api_key=st.session_state.key)
+
 
 
 def record_audio(fs=16000):
