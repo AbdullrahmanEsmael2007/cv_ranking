@@ -3,9 +3,10 @@ import wave
 from pathlib import Path
 from app_pages import st, bottom, request, get_job_description, OpenAI
 
-# Set up your OpenAI API key
-client = OpenAI(api_key=st.session_state.key)
-# Set up your OpenAI API key
+if "key" not in st.session_state:
+    st.session_state.key = None
+else:
+    client = OpenAI(api_key=st.session_state.key)
 
 
 def record_audio(fs=16000):
