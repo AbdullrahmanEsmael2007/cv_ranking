@@ -1,9 +1,7 @@
 import sounddevice as sd
-import numpy as np
 import wave
-from openai import OpenAI
 from pathlib import Path
-import streamlit as st
+from app_pages import st, bottom, request, get_job_description, OpenAI
 
 # Set up your OpenAI API key
 client = OpenAI(api_key=st.session_state.key)

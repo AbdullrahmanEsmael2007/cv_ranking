@@ -1,20 +1,4 @@
-import streamlit as st
-import base64
-
-from chatgpt_request import request  # Your existing request function
-
-# Import libraries for text extraction
-try:
-    import PyPDF2
-except ImportError:
-    st.error("PyPDF2 is not installed. Please install it using 'pip install PyPDF2'.")
-    st.stop()
-
-try:
-    import docx
-except ImportError:
-    st.error("python-docx is not installed. Please install it using 'pip install python-docx'.")
-    st.stop()
+from app_pages import st,  request,  PyPDF2,  extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt, docx
 
 def extract_text_from_pdf(file):
     try:

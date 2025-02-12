@@ -1,9 +1,4 @@
-import streamlit as st
-from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
-from chatgpt_request import request  # Your function to call ChatGPT
-from streamlit_extras.bottom_container import bottom
-import base64
-import re
+from app_pages import st,bottom,request,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt,base64,re
 
 def cv_summary():
     st.title("CV Summary")

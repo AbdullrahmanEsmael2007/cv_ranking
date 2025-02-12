@@ -1,10 +1,7 @@
-import streamlit as st
 import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
 import json
-from chatgpt_request import request  # Your function that calls the LLM (e.g. ChatGPT)
-from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
+from app_pages import st,request,pd,np,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt
+
 
 def extract_name(cv_text):
     """

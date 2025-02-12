@@ -1,9 +1,5 @@
-import streamlit as st
-from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
-from chatgpt_request import request
-from streamlit_extras.bottom_container import bottom
-import re
-import base64
+from app_pages import st,bottom,request,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt,base64,re
+
 
 def information_extracter():
     st.title("Data Extracter")

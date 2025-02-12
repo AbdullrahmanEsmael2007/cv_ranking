@@ -1,7 +1,4 @@
-import streamlit as st
-from chatgpt_request import request  # Assuming this is your custom module
-from get_job_description import get_job_description
-
+from app_pages import st, request, get_job_description
 
 def ai_quiz():
     st.title("AI-Powered Quiz")

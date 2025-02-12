@@ -1,9 +1,4 @@
-import streamlit as st
-from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
-from chatgpt_request import request  # Your function that calls ChatGPT
-from streamlit_extras.bottom_container import bottom
-import base64
-import re
+from app_pages import st, request, extract_text_from_docx, extract_text_from_pdf, extract_text_from_txt
 
 def cv_comparer():
     st.title("CV Comparer")

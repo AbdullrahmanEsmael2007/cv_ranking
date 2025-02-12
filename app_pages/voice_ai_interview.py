@@ -1,8 +1,6 @@
 from voice_ai import *
 from ai_interviewer import *
-from chatgpt_request import request
-import streamlit as st
-
+from app_pages import st,request
 
 
 def display_chat_history():

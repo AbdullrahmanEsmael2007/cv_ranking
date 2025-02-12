@@ -1,7 +1,5 @@
-import streamlit as st
+from app_pages import st,request,extract_text_from_docx,extract_text_from_pdf,extract_text_from_txt
 
-from app_pages.chatgpt_request import request
-from extract_docx_pdf_txt import extract_text_from_pdf, extract_text_from_docx, extract_text_from_txt
 
 def cv_evaluation():
     st.title("CV Evaluation")

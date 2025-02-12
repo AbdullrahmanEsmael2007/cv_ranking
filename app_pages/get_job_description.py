@@ -1,4 +1,5 @@
-import streamlit as st
+from app_pages import st
+
 from convert_into_text import convert
 
 def get_job_description():

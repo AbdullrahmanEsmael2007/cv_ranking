@@ -1,8 +1,4 @@
-import streamlit as st
-from streamlit_extras.bottom_container import bottom
-from chatgpt_request import request
-import PyPDF2
-from get_job_description import get_job_description
+from app_pages import st, request, get_job_description,PyPDF2,bottom
 
 # --- Initialization ---
 initial_system_message = (
