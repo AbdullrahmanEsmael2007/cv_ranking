@@ -25,5 +25,3 @@ def request(prompt, temperature=0.7, max_tokens=1000):
         return response.choices[0].message.content.strip()
     except Exception as e:
         return None
-
-print(request("hello"))
