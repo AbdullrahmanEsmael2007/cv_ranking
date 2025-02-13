@@ -1,3 +1,4 @@
+from openai import OpenAI
 import streamlit as st
 from streamlit_option_menu import option_menu
 from app_pages.cv_evaluation import cv_evaluation
@@ -10,6 +11,19 @@ from app_pages.ai_quiz import ai_quiz
 from app_pages.ai_interviewer import ai_interviewer
 from app_pages.skill_ranker import skill_ranker
 from app_pages.voice_ai_interview import voice_powered_ai_interviewer
+
+def is_api_key_valid(key):
+    client = OpenAI(api_key=key)
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages="This is a test.",
+            max_tokens=5
+        )
+        return True
+    except Exception:
+        return False
+  
 
 
 def main():
@@ -29,10 +43,14 @@ def main():
         st.write("Don't have an API key? Click [here](https://platform.openai.com/account/api-keys) to get one.")
         key = st.text_input("Enter your OpenAI API key", value=st.session_state.key if "key" in st.session_state else "")
         if key is not None and st.button("Save Key"):
-            st.session_state.key = key
-            st.write(f"Your API-Key: **{key}**")
-            st.button("Confirm")
-        
+            if not is_api_key_valid(key):
+                st.error("Invalid API key. Please try again.")
+                return
+            else:
+                st.session_state.key = key
+                st.write(f"Your API-Key: **{key}**")
+                st.button("Confirm")
+            
 
     else:
     # Sidebar for Navigation
