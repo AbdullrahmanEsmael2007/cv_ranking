@@ -1,4 +1,3 @@
-import logging
 from openai import OpenAI
 import streamlit as st
 from streamlit_option_menu import option_menu
@@ -13,9 +12,6 @@ from app_pages.ai_interviewer import ai_interviewer
 from app_pages.skill_ranker import skill_ranker
 from app_pages.voice_ai_interview import voice_powered_ai_interviewer
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-
 def is_api_key_valid(key):
     client = OpenAI(api_key=key)
     try:
@@ -25,78 +21,80 @@ def is_api_key_valid(key):
             max_tokens=5
         )
         return True
-    except Exception as e:
-        logging.error(f"API key validation error: {e}")
+    except Exception:
         return False
+  
 
-def get_api_key():
-    if "key" not in st.session_state:
-        st.session_state.key = None
-
-    if st.session_state.key is None:
-        st.title("API key")
-        st.write("API key is required to use this app. Please enter your API key below:")
-        st.write("Don't have an API key? Click [here](https://platform.openai.com/account/api-keys) to get one.")
-        key = st.text_input("Enter your OpenAI API key", value=st.session_state.key if "key" in st.session_state else "")
-        if key and st.button("Save Key"):
-            if not is_api_key_valid(key):
-                st.error("Invalid API key. Please try again.")
-            else:
-                st.session_state.key = key
-                st.success("API key saved successfully.")
-    return st.session_state.key is not None
-
-def render_sidebar():
-    with st.sidebar:
-        st.image("assets/image.png", width=280)  # Replace with your logo URL or remove if not needed
-        st.title("CV Toolkit")
-        selected = option_menu(
-            menu_title=None,  # Hide the menu title
-            options=[
-                "Information Extracter",
-                "CV Comparer",
-                "CV Evaluation",
-                "CV Summary",
-                "CV Ranker",
-                "Custom Prompter",
-                "AI Quiz",
-                "AI Interview",
-                "Skill Ranker",
-                "Voice AI Interview"
-            ],
-            icons=[
-                "clipboard-data",
-                "arrows-collapse",
-                "clipboard-check",
-                "file-earmark-text",
-                "list-task",
-                "chat-left-text",
-                "chat-left-dots",
-                "chat-left",
-                "bar-chart",
-                "mic"
-            ],
-            menu_icon="cast",
-            default_index=0,
-            orientation="vertical"
-        )
-        st.markdown("---")
-        if st.button("Settings"):
-            st.subheader("Settings")
-            st.write(f"API Key: **{'*' * len(st.session_state.key)}**")
-        st.markdown("---")
-        st.write("Developed by [RMG](https://www.rmg-sa.com/en/)")  # Replace with your details
-    return selected
 
 def main():
+    # Set up the Streamlit page configuration
     st.set_page_config(
         page_title="CV Processing App",
         layout="wide",
         initial_sidebar_state="expanded"
     )
     
-    if get_api_key():
-        selected = render_sidebar()
+    if "key" not in st.session_state:
+        st.session_state.key = None
+    
+    if st.session_state.key is None:
+        st.title("API key")
+        st.write("API key is required to use this app. Please enter your API key below:")
+        st.write("Don't have an API key? Click [here](https://platform.openai.com/account/api-keys) to get one.")
+        key = st.text_input("Enter your OpenAI API key", value=st.session_state.key if "key" in st.session_state else "")
+        if key is not None and st.button("Save Key"):
+            if not is_api_key_valid(key):
+                st.error("Invalid API key. Please try again.")
+                return
+            else:
+                st.session_state.key = key
+                st.write(f"Your API-Key: **{key}**")
+                st.button("Confirm")
+            
+
+    else:
+    # Sidebar for Navigation
+        with st.sidebar:
+            st.image("assets/image.png", width=280)  # Replace with your logo URL or remove if not needed
+            st.title("CV Toolkit")
+            selected = option_menu(
+                menu_title=None,  # Hide the menu title
+                options=[
+                    "Information Extracter",
+                    "CV Comparer",
+                    "CV Evaluation",
+                    "CV Summary",
+                    "CV Ranker",
+                    "Custom Prompter",
+                    "AI Quiz",
+                    "AI Interview",
+                    "Skill Ranker",
+                    "Voice AI Interview"
+                ],
+                icons=[
+                    "clipboard-data",
+                    "arrows-collapse",
+                    "clipboard-check",
+                    "file-earmark-text",
+                    "list-task",
+                    "chat-left-text",
+                    "chat-left-dots",
+                    "chat-left",
+                    "bar-chart",
+                    "mic"
+                ],
+                menu_icon="cast",
+                default_index=0,
+                orientation="vertical"
+            )
+            st.markdown("---")
+            setting = st.button("Settings")
+            if setting:
+                st.subheader("Settings")
+                st.write(f"API Key: **{st.session_state.key}**")
+            st.markdown("---")
+            st.write("Developed by [RMG](https://www.rmg-sa.com/en/)")  # Replace with your details
+
         # Display the selected page's content
         if selected == "Information Extracter":
             information_extracter()
@@ -118,6 +116,11 @@ def main():
             skill_ranker()
         elif selected == "Voice AI Interview":
             voice_powered_ai_interviewer()
+
+
+# -----------------------------------------------------------------------------
+# Run the App
+# -----------------------------------------------------------------------------
 
 if __name__ == "__main__":
     main()
